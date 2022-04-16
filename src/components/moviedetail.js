@@ -16,7 +16,7 @@ class MovieDetail extends Component {
 
     render() {
         const DetailInfo = () => {
-            if (!this.props.selectedMovie.movie_reviews) {
+            if (!this.props.selectedMovie.msg) {
                 return <div>Loading....</div>
             }
 
@@ -24,21 +24,21 @@ class MovieDetail extends Component {
                 <Card>
                     <Card.Header>Movie Detail</Card.Header>
                     <Card.Body>
-                        <Image className="image" src={this.props.selectedMovie.imageUrl} thumbnail />
+                        <Image className="image" src={this.props.selectedMovie.msg.imageUrl} thumbnail />
                     </Card.Body>
                     <ListGroup>
-                        <ListGroupItem>{this.props.selectedMovie.title}</ListGroupItem>
+                        <ListGroupItem>{this.props.selectedMovie.msg.title}</ListGroupItem>
                         <ListGroupItem>
                             <p>Actors</p>
-                            <p><b>{this.props.selectedMovie.actorOne}</b></p>
-                            <p><b>{this.props.selectedMovie.actorTwo}</b></p>
-                            <p><b>{this.props.selectedMovie.actorThree}</b></p>
+                            <p><b>{this.props.selectedMovie.msg.actorOne}</b></p>
+                            <p><b>{this.props.selectedMovie.msg.actorTwo}</b></p>
+                            <p><b>{this.props.selectedMovie.msg.actorThree}</b></p>
 
                         </ListGroupItem>
-                        <ListGroupItem><h4><BsStarFill/> {this.props.selectedMovie.avgRating}</h4></ListGroupItem>
+                        <ListGroupItem><h4><BsStarFill/> {this.props.selectedMovie.movRating.avgRating}</h4></ListGroupItem>
                     </ListGroup>
                     <Card.Body>
-                        {this.props.selectedMovie.movie_reviews.map((review, i) =>
+                        {this.props.selectedMovie.msg.movie_reviews.map((review, i) =>
                         <p key ={i}>
                             <b>{review.name}</b>&nbsp; {review.review}
                             &nbsp; <BsStarFill /> {review.rating}
@@ -46,11 +46,11 @@ class MovieDetail extends Component {
                         )}
                     </Card.Body>
                     <iframe title={"dummyframe"} name={"dummyframe"} id={"dummyframe"}/>
-                    <form id={"review form"} action={`https://csc3916assignment4.herokuapp.com/reviews?title=${this.props.selectedMovie.title}&token=${localStorage.getItem("token")}`} method={"post"} target={"dummyframe"}>
+                    <form id={"review form"} action={`https://csc3916assignment4.herokuapp.com/reviews?title=${this.props.selectedMovie.msg.title}&token=${localStorage.getItem("token")}`} method={"post"} target={"dummyframe"}>
                         <label>Enter Your Review</label>
-                        <input type={"text"} id={"review"} name={"review"}/>
+                        <p><input type={"text"} id={"review"} name={"review"}/></p>
                         <label>Enter Number Of Stars Out Of Five</label>
-                        <input type={"text"} id={"rating"} name={"rating"}/>
+                       <p> <input type={"text"} id={"rating"} name={"rating"}/></p>
                         <input type={"submit"} value={"Submit"} />
 
                     </form>

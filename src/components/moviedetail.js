@@ -16,7 +16,7 @@ class MovieDetail extends Component {
 
     render() {
         const DetailInfo = () => {
-            if (!this.props.selectedMovie.movReview) {
+            if (!this.props.selectedMovie) {
                 return <div>Loading....</div>
             }
 

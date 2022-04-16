@@ -29,10 +29,12 @@ export function setMovie(movie) {
     }
 }
 
+//probably need to change the movie id part of this code
 export function fetchMovie(movieId) {
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/movies/${movieId}?reviews=true`, {
+        return fetch(`${env.REACT_APP_API_URL}/movies?title=${movieId}&review=true`, {
+        //return fetch(`${env.REACT_APP_API_URL}/movies?title=A Bridge Too Far&review=true`,{
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -46,7 +48,7 @@ export function fetchMovie(movieId) {
             }
             return response.json()
         }).then((res) => {
-            dispatch(movieFetched(res));
+            dispatch(movieFetched(res.msg));
         }).catch((e) => console.log(e));
     }
 }
@@ -54,7 +56,7 @@ export function fetchMovie(movieId) {
 export function fetchMovies() {
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/movies?reviews=true`, {
+        return fetch(`${env.REACT_APP_API_URL}/movies`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -68,7 +70,7 @@ export function fetchMovies() {
             }
             return response.json()
         }).then((res) => {
-            dispatch(moviesFetched(res));
+            dispatch(moviesFetched(res.msg));
         }).catch((e) => console.log(e));
     }
 }

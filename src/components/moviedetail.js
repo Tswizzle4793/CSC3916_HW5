@@ -16,7 +16,7 @@ class MovieDetail extends Component {
 
     render() {
         const DetailInfo = () => {
-            if (!this.props.selectedMovie) {
+            if (!this.props.selectedMovie.movie_reviews) {
                 return <div>Loading....</div>
             }
 
@@ -29,21 +29,34 @@ class MovieDetail extends Component {
                     <ListGroup>
                         <ListGroupItem>{this.props.selectedMovie.title}</ListGroupItem>
                         <ListGroupItem>
-                            {this.props.selectedMovie.actors.map((actor, i) =>
-                                <p key={i}>
-                                    <b>{actor.actorName}</b> {actor.characterName}
-                                </p>)}
+                            <p>Actors</p>
+                            <p><b>{this.props.selectedMovie.actorOne}</b></p>
+                            <p><b>{this.props.selectedMovie.actorTwo}</b></p>
+                            <p><b>{this.props.selectedMovie.actorThree}</b></p>
+
                         </ListGroupItem>
                         <ListGroupItem><h4><BsStarFill/> {this.props.selectedMovie.avgRating}</h4></ListGroupItem>
                     </ListGroup>
                     <Card.Body>
-                        {this.props.selectedMovie.reviews.map((review, i) =>
-                            <p key={i}>
-                                <b>{review.username}</b>&nbsp; {review.review}
-                                &nbsp;  <BsStarFill /> {review.rating}
-                            </p>
+                        {this.props.selectedMovie.movie_reviews.map((review, i) =>
+                        <p key ={i}>
+                            <b>{review.name}</b>&nbsp; {review.review}
+                            &nbsp; <BsStarFill /> {review.rating}
+                        </p>
                         )}
                     </Card.Body>
+                    <iframe title={"dummyframe"} name={"dummyframe"} id={"dummyframe"}/>
+                    <form id={"review form"} action={`https://csc3916assignment4.herokuapp.com/reviews?title=${this.props.selectedMovie.title}&token=${localStorage.getItem("token")}`} method={"post"} target={"dummyframe"}>
+                        <label>Enter Your Review</label>
+                        <input type={"text"} id={"review"} name={"review"}/>
+                        <label>Enter Number Of Stars Out Of Five</label>
+                        <input type={"text"} id={"rating"} name={"rating"}/>
+                        <input type={"submit"} value={"Submit"} />
+
+                    </form>
+
+
+
                 </Card>
             )
         }

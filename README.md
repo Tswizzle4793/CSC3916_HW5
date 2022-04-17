@@ -1,3 +1,17 @@
+While I was working on this code on Saturday April 16 heroku stopped allowing Github deploys so the version of code on the heroku instance is not the same version as this repo. The main diffrenece is the site does not display the aveage movie rating on the movie's page.
+
+React site:  https://csc3921hwk5.herokuapp.com/#/
+
+api: https://csc3916assignment4.herokuapp.com/
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
